@@ -1,9 +1,30 @@
-def factp(n):
-  if n==0 or n==1:
-    return 1
-  else:
-    return n*factp(n-1)
+class BankAccount:
+  def __init__(self,acno,acname,acbal=0.0):
+    self.__acno = acno
+    self.__acname=acname
+    self.__acbal=acbal
 
-num=int(input("Enter the Value :"))
-result = factp(num)
-print("The {}! value is {}".format(num,result))
+  def deposit(self,amt):
+    if amt > 0:
+      self.__acbal +=amt
+      print("Deposited Rs.{}. Your Current Balance is : Rs.{}".format(amt,self.__acbal))
+    else:
+      print("Invalid Data")
+
+  def withdraw(self,amt):
+    if amt > 0 and amt <= self.__acbal:
+      self.__acbal -= amt
+      print("Withdrew Rs.{}. YourCurrent Balance is Rs.{}".format(amt,self.__acbal))
+    else:
+      print("Invalid Transactions")
+
+  def display(self):
+    a=float(self.__acbal)
+    b=int(self.__acno)
+    print("Hai {} Balance for your Account No. {} is Rs.{}".format(self.__acname,b,a))
+
+
+acc = BankAccount(2004,"Musheera",5000)
+acc.display()
+acc.deposit(600)
+acc.withdraw(2000)
